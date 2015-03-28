@@ -1,0 +1,16 @@
+*.class
+*.iml
+/.iml
+.metadata
+.classpath
+.settings
+.project
+.idea
+.idea/*
+.iml
+*META-INF*
+
+
+Scouty.iml
+/bin
+/target
