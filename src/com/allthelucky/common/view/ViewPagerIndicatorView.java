@@ -16,12 +16,7 @@ import android.widget.LinearLayout;
 
 import com.allthelucky.common.view.TabIndicatorView.OnIndicateChangeListener;
 
-/**
- * 文字切换标签+ViewPager内容区控件
- * 
- * @author savant-pan
- * 
- */
+
 public class ViewPagerIndicatorView extends LinearLayout implements OnIndicateChangeListener, OnPageChangeListener {
 	private TabIndicatorView tabIndicatorView;
 	private ViewPager viewPager;
@@ -52,12 +47,7 @@ public class ViewPagerIndicatorView extends LinearLayout implements OnIndicateCh
 
 	}
 
-	/**
-	 * 设置显示标签文字及对应内容布局
-	 * 
-	 * @param titleViewMap
-	 *            标题及对应View map数据
-	 */
+
 	public void setupLayout(Map<String, View> titleViewMap) {
 		if (titleViewMap == null || titleViewMap.size() == 0) {
 			throw new NullPointerException();

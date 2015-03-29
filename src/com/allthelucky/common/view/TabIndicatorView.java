@@ -18,28 +18,19 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import org.team3182.scouty.R;
 
-/**
- * 切换标签控件基类
- * 
- * @author savant-pan
- * 
- */
+
 public class TabIndicatorView extends LinearLayout implements View.OnTouchListener {
 	private LinearLayout tabHost;
 	private List<View> viewList = new Vector<View>();
 
-	/**
-	 * 界面刷新Handler
-	 */
+
 	private Handler refreshHandler;
 	private int viewCount = 0;
 	private int currentIndex = 0;
 	private OnIndicateChangeListener onIndicateChangeListener;
 	private boolean notify = false;
 
-	/**
-	 * 标签切换监听接口
-	 */
+
 	public interface OnIndicateChangeListener {
 		public void onTabChanged(int position);
 	}
@@ -67,12 +58,7 @@ public class TabIndicatorView extends LinearLayout implements View.OnTouchListen
 		this.onIndicateChangeListener = onIndicateChangeListener;
 	}
 	
-	/**
-	 * 设置文字标签数据
-	 * 
-	 * @param titleArray
-	 *            文字标签数组
-	 */
+
 	public void setupLayout(String titleArray[]) {
 		if (titleArray == null || titleArray.length == 0) {
 			throw new NullPointerException();
@@ -125,33 +111,19 @@ public class TabIndicatorView extends LinearLayout implements View.OnTouchListen
 		this.refrash();
 	}
 
-	/**
-	 * 设置当前显示TAB
-	 * 
-	 * @param position
-	 *            前显示TAB位置
-	 */
+
 	public void setCurrentTab(int position) {
 		this.setCurrentTab(position, true);// 默认需要通知接口返回位置
 	}
 
-	/**
-	 * 设置当前显示TAB
-	 * 
-	 * @param position
-	 *            前显示TAB位置
-	 * @param notify
-	 *            是否通知接口返回位置
-	 */
+
 	public void setCurrentTab(int position, boolean notify) {
 		this.notify = notify;
 		this.currentIndex = position;
 		this.refrash();
 	}
 
-	/**
-	 * 事件处理
-	 */
+
 	@Override
 	public boolean onTouch(View view, MotionEvent event) {
 		final View lastView = this.viewList.get(this.currentIndex);
@@ -164,11 +136,7 @@ public class TabIndicatorView extends LinearLayout implements View.OnTouchListen
 		}
 	}
 
-	/**
-	 * 设置当前 currentIndex值
-	 * 
-	 * @param touchView
-	 */
+
 	private void setCurrentIndex(View touchView) {
 		for (int index = 0; index < this.viewCount; index++) {// 切换刷新界面
 			final View view = this.viewList.get(index);
@@ -178,9 +146,6 @@ public class TabIndicatorView extends LinearLayout implements View.OnTouchListen
 		}
 	}
 
-	/**
-	 * 更新条目
-	 */
 	private void refrash() {
 		this.refreshHandler.sendEmptyMessage(0);
 	}
