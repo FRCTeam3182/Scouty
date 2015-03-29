@@ -16,7 +16,7 @@ public class Main extends Activity {
         // Enable Local Datastore.
         Parse.enableLocalDatastore(this);
 
-        Parse.initialize(this, "ePfmPvijcOTPfbKwcz6Ap7uAPWICrmi6rR6pyJ6T", "proSRvcvzD7Hs1KXCdp2qz5Xhiae3563a5NUUNxe");
+        Parse.initialize(this, getString(R.string.appID), getString(R.string.clientKey));
 
         
     }
