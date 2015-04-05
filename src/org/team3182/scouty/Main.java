@@ -44,9 +44,10 @@ public class Main extends Activity {
 
         ViewPagerIndicatorView viewPagerIndicatorView = (ViewPagerIndicatorView) findViewById(R.id.base_view);
         final Map<String, View> map = new HashMap<String, View>();
+        map.put("View teams", LayoutInflater.from(this).inflate(R.layout.team_list_view, null));
         map.put("Submit new team", LayoutInflater.from(this).inflate(R.layout.entry_view, null));
 
-        map.put("View teams", LayoutInflater.from(this).inflate(R.layout.team_list_view, null));
+        
 
         viewPagerIndicatorView.setupLayout(map);
 
@@ -157,8 +158,7 @@ public class Main extends Activity {
         @Override
         public View getView(int position, View convertView, ViewGroup parent) {
             if (convertView == null) {
-                convertView = View.inflate(getApplicationContext(),
-                        R.layout.list_item, null);
+                convertView = LayoutInflater.from(getApplicationContext()).inflate(R.layout.list_item, parent, false);
                 new ViewHolder(convertView);
             }
             ViewHolder holder = (ViewHolder) convertView.getTag();
