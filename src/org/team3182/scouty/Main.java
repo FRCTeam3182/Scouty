@@ -1,6 +1,7 @@
 package org.team3182.scouty;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.content.pm.ApplicationInfo;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
@@ -9,10 +10,7 @@ import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.BaseAdapter;
-import android.widget.ImageView;
-import android.widget.TextView;
-import android.widget.Toast;
+import android.widget.*;
 import com.allthelucky.common.view.ViewPagerIndicatorView;
 import com.baoyz.swipemenulistview.*;
 import com.parse.*;
@@ -74,68 +72,25 @@ public class Main extends Activity {
                 Toast.makeText(getApplicationContext(), "Done getting stuff! " + teams.get(0).getTeamName(), Toast.LENGTH_SHORT).show();
             }
         });
-        SwipeMenuCreator creator = new SwipeMenuCreator() {
 
-            @Override
-            public void create(SwipeMenu menu) {
-                // create "open" item
-                SwipeMenuItem openItem = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                openItem.setBackground(new ColorDrawable(Color.rgb(0xC9, 0xC9,
-                        0xCE)));
-                // set item width
-                openItem.setWidth(dp2px(90));
-                // set item title
-                openItem.setTitle("Details");
-                // set item title fontsize
-                openItem.setTitleSize(18);
-                // set item title font color
-                openItem.setTitleColor(Color.WHITE);
-                // add to menu
-                menu.addMenuItem(openItem);
-
-                // create "delete" item
-                SwipeMenuItem deleteItem = new SwipeMenuItem(
-                        getApplicationContext());
-                // set item background
-                deleteItem.setBackground(new ColorDrawable(Color.rgb(0xF9,
-                        0x3F, 0x25)));
-                deleteItem.setTitle("Delete");
-                // set item width
-                deleteItem.setWidth(dp2px(90));
-                // add to menu
-                menu.addMenuItem(deleteItem);
-            }
-        };
-        SwipeMenuListView listView = (SwipeMenuListView) map.get("View teams").findViewById(R.id.listView);
-        listView.setMenuCreator(creator);
-
+        final SwipeMenuListView listView = (SwipeMenuListView) map.get("View teams").findViewById(R.id.listView);
         mAdapter = new AppAdapter();
         listView.setAdapter(mAdapter);
 
 
-        // step 2. listener item click event
-        listView.setOnMenuItemClickListener(new SwipeMenuListView.OnMenuItemClickListener() {
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public boolean onMenuItemClick(int position, SwipeMenu menu, int index) {
-                Team team = teams.get(position);
-                switch (index) {
-                    case 0:
-                        // open
-                        Toast.makeText(getApplicationContext(), team.getTeamName(), Toast.LENGTH_SHORT).show();
-                        break;
-                    case 1:
-                        // delete
-                        Toast.makeText(getApplicationContext(), team.getTeamName() + " Deleted", Toast.LENGTH_SHORT).show();
-                        //teams.remove(position);
-                        //mAdapter.notifyDataSetChanged();
-                        break;
-                }
-                return false;
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Team t = (Team) listView.getItemAtPosition(position);
+                listItemPressed(t);
             }
         });
+    }
 
+    public void listItemPressed(Team t){
+        Intent i = new Intent(this, SelectedTeamActivity.class);
+        i.putExtra("Team", t);
+        startActivity(i);
     }
 
     class AppAdapter extends BaseAdapter {
@@ -179,10 +134,6 @@ public class Main extends Activity {
         }
     }
 
-    private int dp2px(int dp) {
-        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, dp,
-                getResources().getDisplayMetrics());
-    }
         
 
 }

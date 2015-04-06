@@ -3,8 +3,10 @@ package org.team3182.scouty;
 import com.parse.ParseClassName;
 import com.parse.ParseObject;
 
+import java.io.Serializable;
+
 @ParseClassName("Team")
-public class Team extends ParseObject{
+public class Team extends ParseObject implements Serializable {
 
     private String teamNumber = "teamNumber";
     private String teamName = "teamName";
@@ -12,6 +14,7 @@ public class Team extends ParseObject{
     private String numberOfTotes = "numberOfTotes";
     private String amountOfWheels = "amountOfWheels";
 
+    @UIAnnotation(name = "Team Number")
     public int getTeamNumber() {
         return getInt(teamNumber);
     }
@@ -20,6 +23,7 @@ public class Team extends ParseObject{
         put(this.teamNumber, teamNumber);
     }
 
+    @UIAnnotation(name = "Team Name")
     public String getTeamName() {
         return getString(teamName);
     }
@@ -28,6 +32,7 @@ public class Team extends ParseObject{
         put(this.teamName, teamNumber);
     }
 
+    @UIAnnotation(name = "Amount of Totes")
     public int getNumberOfTotes() {
         return getInt(numberOfTotes);
     }
@@ -36,6 +41,7 @@ public class Team extends ParseObject{
         put(this.numberOfTotes, numberOfTotes);
     }
 
+    @UIAnnotation(name = "Amount of wheels")
     public int getAmountOfWheels() {
         return getInt(amountOfWheels);
     }
