@@ -1,6 +1,10 @@
 # Scouty
 A scouting app for FRC
 
+
+## Screenshots
+![Image1](http://i.imgur.com/QoWVaPH.png)
+
 ## Setup
 Create a `strings.xml` file inside of `res/values` and place three variables in there
 
