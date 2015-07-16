@@ -1,0 +1,6 @@
+<!-- Enter Info Here -->
+<resources>
+    <string name="app_name"></string>
+    <string name="appID"></string>
+    <string name="clientKey"></string>
+</resources>
